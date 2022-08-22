@@ -1,12 +1,13 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
+import { getTopics } from '../Helpers/Api'
 
 const Topics = () => {
     const [topics, setTopics] = useState([])
 
     useEffect(() => {
-        axios.get("https://dk-nc-news.herokuapp.com/api/topics").then((data) => {
+        getTopics().then((data) => {
             setTopics(data.data.topics)
         })
     }, [])
