@@ -6,6 +6,7 @@ import Topics from './Components/Topics';
 import Home from "./Components/Home"
 import Endpoints from "./Components/Endpoints"
 import SingleArticle from './Components/singleArticle';
+import TopicArticles from './Components/TopicArticles';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/articles" element={<Articles />}/>
         <Route path="/comments" element={<Comments />}/>
         <Route path="/topics" element={<Topics />}/>
+        <Route path="/topics/:topic" element={<TopicArticles />}/>
         <Route path="/endpoints" element={<Endpoints />}/>
         <Route path="/articles/:article_id" element={<SingleArticle />}/>
       </Routes>
