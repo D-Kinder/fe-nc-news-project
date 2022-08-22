@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  overflow: scroll;
+  height: 100vh;
 }
 
 * {
@@ -12,7 +14,7 @@
   height: 100vh;
   width: 100vw;
 }
-
+@media screen and (max-width: 600px){
 .heading {
   display: grid;
   grid-template-columns: 7fr 3fr;
@@ -59,7 +61,340 @@ a:visited {
 .home {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   border: 1px solid green;
+  overflow: scroll;
+  height: 100%;
+}
+
+.home-links {
+  border: 1px solid orange;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 15px;
+}
+
+.top {
+  position: sticky;
+  width: 100%;
+  top : 0;
+  background-color: white;
+}
+
+#home-intro {
+  margin-top: 80px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-endpoints {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-topics {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-articles {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#home-comments {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.articles-page {
+  display:grid;
+  grid-template-rows: 0.5fr 0.5fr 0.5fr 8fr;
+  grid-template-columns: 6fr 4fr;
+  grid-template-areas:
+  "topic-filter order-sort-reset"
+  "add-article add-article"
+  "articles-title articles-title"
+  "articles articles";
+  height: 100%;
+}
+
+.articles {
+  grid-area: articles;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 100%;
+  overflow:scroll;
+  padding-bottom: 20px;
+  padding-top:20px;
+}
+
+.articles-title {
+  grid-area: articles-title
+}
+
+.topic-filter {
+  grid-area: topic-filter;
+}
+
+.order-sort-reset {
+  grid-area: order-sort-reset;
+}
+
+.add-article {
+  grid-area: add-article;
+}
+
+.single-article-page {
+  display:grid;
+  grid-template-rows: 1fr 6fr 1fr 1fr;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-areas:
+  ". back-to-articles ."
+  ". single-article ."
+  ". article-comments ."
+  ". rate-it .";
+  height: 100%;
+}
+
+
+.single-article {
+  grid-area: single-article;
+  display: flex;
+  flex-direction: column;
+}
+
+.back-to-articles{
+  grid-area: back-to-articles;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+
+}
+
+
+
+
+
+
+@media screen and (min-width: 600px){
+  .top {
+    background-color: green;
+  }
+
+  .heading {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-template-areas: 
+    "Title User";
+    border: 1px solid black;
+    height: 75px;
+  }
+  
+  .title {
+    grid-area: Title;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+  }
+  
+  .user {
+    grid-area: User;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: black;
+  }
+  
+  .quicklinks {
+    border: 1px solid blue;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 1px solid green;
+    overflow: scroll;
+    height: 100%;
+  }
+  
+  .home-links {
+    border: 1px solid orange;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 15px;
+  }
+  
+  .top {
+    position: sticky;
+    width: 100%;
+    top : 0;
+    background-color: white;
+  }
+  
+  #home-intro {
+    margin-top: 80px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #home-endpoints {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #home-topics {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #home-articles {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #home-comments {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .articles-page {
+    display:grid;
+    grid-template-columns: 2fr 8fr;
+    grid-template-rows: 1fr 2.5fr 2.5fr 4fr;
+    grid-template-areas:
+    ". articles-title"
+    "topic-filter articles"
+    "order-sort-reset articles"
+    "add-article articles";
+    height: 100%;
+  }
+  .articles {
+    grid-area: articles;
+    border: 2px solid red;
+    overflow: scroll;
+    height: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .topic-filter {
+    grid-area: topic-filter;
+  }
+
+  .order-sort-reset {
+    grid-area: order-sort-reset;
+  }
+
+  .add-article {
+    grid-area: add-article
+  }
+
+  .articles-title {
+    grid-area: articles-title;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+    border: 1px solid green;
+  }
+
+  .single-article-page {
+    display:grid;
+    grid-template-rows: 0.75fr 6fr 1fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-areas:
+    ". back-to-articles ."
+    ". single-article ."
+    ". article-comments ."
+    ". rate-it .";
+    height: 100%;
+  }
+
+  .single-article {
+    grid-area: single-article;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin-top: 20px;
+  }
+
+  .back-to-articles{
+    grid-area: back-to-articles;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+  }
+
+  .article-card {
+    
+  }
 }
 
 
