@@ -1,18 +1,17 @@
 import { useParams, Link } from "react-router-dom"
 import {useEffect, useState} from 'react'
-import axios from "axios"
+import { getArticlesByTopic } from "../Helpers/Api"
 
 const TopicArticles = () => {
     const [topicArticles, setTopicArticles] = useState([])
-    const {topic} = useParams()
-    const titleTopic = topic.charAt(0).toUpperCase() + topic.slice(1)
+    const {topic_slug} = useParams()
+    const titleTopic = topic_slug.charAt(0).toUpperCase() + topic_slug.slice(1)
 
     useEffect(() => {
-        axios.get(`https://dk-nc-news.herokuapp.com/api/articles?topic=${topic}`).then((data) => {
+        getArticlesByTopic(topic_slug).then((data) => {
             setTopicArticles(data.data.articles)
         })
     }, [])
-    console.log(topicArticles)
 
 return (
     <div className="topic-articles-page">
@@ -23,7 +22,7 @@ return (
     <div className="topic-article-share">
         <p>Seen something amazing and want to spread the word?</p>
         <p>Copy this URL:</p>
-        <p> {`https://dk-nc-news.herokuapp.com/api/articles?topic=${topic}`}</p>
+        <p> {`https://dk-nc-news.herokuapp.com/api/articles?topic=${topic_slug}`}</p>
     </div>
     <section className="topic-articles-list">
     <ul>

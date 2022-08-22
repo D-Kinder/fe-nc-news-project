@@ -8,11 +8,6 @@ const Home = () => {
             <br></br>
             <p>Read. Write. Comment.</p>
         </section>
-        <section id="home-endpoints" className="home-links">
-        <Link  to="/endpoints">AVAILABLE ENDPOINTS</Link>
-        <br></br>
-        <p>View the available endpoints that take you to your desired location</p>
-        </section>
         <section id="home-topics" className="home-links">
         <Link to="/topics">TOPICS</Link>
         <br></br>

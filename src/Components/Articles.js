@@ -1,23 +1,24 @@
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import ArticleCard from './ArticleCard'
+import { getTopics, getArticles } from '../Helpers/Api'
 
 const Articles = () => {
 const [topics, setTopics] = useState([])
 const [allArticles, setAllArticles] = useState([])
 
 useEffect(() => {
-    axios.get("https://dk-nc-news.herokuapp.com/api/topics").then((data) => {
+    getTopics().then((data) => {
         setTopics(data.data.topics)
     })
 }, [])
 
 useEffect(() => {
-    axios.get("https://dk-nc-news.herokuapp.com/api/articles").then((data) => {
+    getArticles().then((data) => {
         setAllArticles(data.data.articles)
     })
 }, [])
-console.log(topics)
+
     return (
         <div className="articles-page">
         <h4 className="articles-title">Articles</h4>
