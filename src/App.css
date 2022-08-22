@@ -195,8 +195,79 @@ a:visited {
   margin-bottom: 4%;
 }
 
+.topics-page {
+  display:grid;
+  grid-template-rows: 1fr 8fr;
+  grid-template-columns: 1.5fr 3fr 1.5fr;
+  grid-template-areas: 
+  ". topics-title ."
+  ". topics-list .";
+  height: 100%;
 
 }
+
+.topics-title {
+  grid-area: topics-title;
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topics-list {
+  grid-area: topics-list;
+}
+
+ul{
+  list-style:none;
+}
+
+.single-topic {
+  padding: 50px;
+  border: 1px solid red;
+}
+
+.topic-articles-page {
+  display:grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 0.5fr 0.5fr 4fr 1fr;
+  grid-template-areas:
+  ". topic-articles-title ."
+  ". back-to-topics ."
+  ". topic-articles-list ."
+  ". . .";
+  height: 100%;
+}
+
+.back-to-topics {
+  grid-area: back-to-topics;
+}
+
+.topic-articles-title {
+  grid-area: topic-articles-title;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.topic-articles-list {
+  grid-area: topic-articles-list;
+  overflow: scroll;
+  border: 1px solid red;
+}
+
+.single-topic-article {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid orange;
+}
+
+}
+
+
+
+
+
+
 
 
 
@@ -392,8 +463,54 @@ a:visited {
     margin-bottom: 4%;
   }
 
-  .article-card {
+  .topics-page {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-areas:
+    ". topics-title ."
+    ". topics-list ."
+    ". . .";
+    height: 100%
+  }
+
+  .topics-title {
+    grid-area: topics-title;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  ul{
+    list-style:none;
+  }
+
+  .topic-coding{
+    grid-area: topic-coding;
+  }
+
+  .topics-list {
+    grid-area: topics-list;
+    display: flex;
+    flex-direction: column;
     
+  }
+
+  .single-topic {
+    padding: 50px;
+    border: 1px solid red;
+  }
+
+  .topic-articles-page {
+    display:grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-areas:
+    ". topic-articles-title ."
+    ". back-to-topics ."
+    ". topic-articles-list ."
+    ". . . .";
   }
 }
 
