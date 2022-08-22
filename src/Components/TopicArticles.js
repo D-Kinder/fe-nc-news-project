@@ -20,6 +20,11 @@ return (
     <div className="back-to-topics">
     <Link to="/topics">Back to Topics</Link>
     </div>
+    <div className="topic-article-share">
+        <p>Seen something amazing and want to spread the word?</p>
+        <p>Copy this URL:</p>
+        <p> {`https://dk-nc-news.herokuapp.com/api/articles?topic=${topic}`}</p>
+    </div>
     <section className="topic-articles-list">
     <ul>
         {topicArticles.map((article) => {
@@ -37,6 +42,7 @@ return (
         })}
     </ul>
     </section>
+    
     </div>
 )
 }

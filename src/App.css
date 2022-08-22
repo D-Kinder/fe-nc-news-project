@@ -216,6 +216,7 @@ a:visited {
 
 .topics-list {
   grid-area: topics-list;
+  overflow: scroll;
 }
 
 ul{
@@ -230,17 +231,21 @@ ul{
 .topic-articles-page {
   display:grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 0.5fr 0.5fr 4fr 1fr;
+  grid-template-rows: 0.25fr 0.25fr 4fr 1fr;
   grid-template-areas:
   ". topic-articles-title ."
   ". back-to-topics ."
   ". topic-articles-list ."
-  ". . .";
+  ". topic-article-share .";
   height: 100%;
 }
 
 .back-to-topics {
   grid-area: back-to-topics;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .topic-articles-title {
@@ -259,6 +264,14 @@ ul{
   padding: 10px;
   margin-bottom: 15px;
   border-bottom: 1px solid orange;
+}
+
+.topic-article-share {
+  grid-area: topic-article-share;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 }
@@ -466,7 +479,7 @@ ul{
   .topics-page {
     display: grid;
     grid-template-columns: 2fr 6fr 2fr;
-    grid-template-rows: 1fr 5fr 1fr;
+    grid-template-rows: 1fr 6fr 1fr;
     grid-template-areas:
     ". topics-title ."
     ". topics-list ."
@@ -494,7 +507,8 @@ ul{
     grid-area: topics-list;
     display: flex;
     flex-direction: column;
-    
+    overflow: scroll;
+    margin: 10px;
   }
 
   .single-topic {
@@ -505,12 +519,47 @@ ul{
   .topic-articles-page {
     display:grid;
     grid-template-columns: 1fr 4fr 1fr;
-    grid-template-rows: 1fr 1fr 4fr 1fr;
+    grid-template-rows: 0.25fr 0.25fr 4fr 1fr;
     grid-template-areas:
     ". topic-articles-title ."
     ". back-to-topics ."
     ". topic-articles-list ."
-    ". . . .";
+    ". topic-article-share .";
+    height: 100%;
+  }
+
+  .back-to-topics {
+    grid-area: back-to-topics;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .topic-articles-title {
+    grid-area: topic-articles-title;
+    margin-top: 10px;
+    text-decoration: underline;
+  }
+  
+  .topic-articles-list {
+    grid-area: topic-articles-list;
+    overflow: scroll;
+    border: 1px solid red;
+  }
+  
+  .single-topic-article {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid orange;
+  }
+
+  .topic-article-share {
+    grid-area: topic-article-share;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
 }
 
