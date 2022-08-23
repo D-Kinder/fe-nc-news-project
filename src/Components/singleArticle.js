@@ -28,14 +28,13 @@ const SingleArticle = () => {
         <p>Topic: {singleArticle.topic}</p>
         <br></br>
         <p>{singleArticle.body}</p>
-        <br></br>
-        <p>Votes: {singleArticle.votes}</p>
         </div>
         <div className="article-comments">
             <p>View Comments: {singleArticle.comment_count}</p>
         </div>
         <div className="rate-it">
             <button>Like it</button>
+            <p>Votes: {singleArticle.votes}</p>
             <button>Dislike it</button>
         </div>
         </div>
