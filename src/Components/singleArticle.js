@@ -5,8 +5,8 @@ import { getArticleById, changeArticleVotes } from '../Helpers/Api'
 const SingleArticle = () => {
     const [singleArticle, setSingleArticle] = useState({})
     const [optimisticVotes, setOptimisticVotes] = useState(0)
-    const [successfulVote, setSuccessfulVote] = useState(false)
-    const [failedVote, setFailedVote] = useState(false)
+    const [successfulVote, setSuccessfulVote] = useState(null)
+    // const [failedVote, setFailedVote] = useState(false)
 
     const {article_id} = useParams()
 
@@ -16,39 +16,56 @@ const SingleArticle = () => {
         })
     }, [article_id])
 
-    const incrementVote = () => {
-        setSuccessfulVote(false)
-        setFailedVote(false)
-        setOptimisticVotes((currentOptimisticVotes) => {
-            return currentOptimisticVotes + 1
-        })
-        changeArticleVotes(article_id, 1)
-        .then(()=> {
-            setSuccessfulVote(true)
-        })
-        .catch((err) => {
-            setOptimisticVotes((currentOptimisticVotes) => {
-                return currentOptimisticVotes - 1
-            })
-            setFailedVote(true)
-        })
-    }
+    // const incrementVote = () => {
+    //     setSuccessfulVote(false)
+    //     setFailedVote(false)
+    //     setOptimisticVotes((currentOptimisticVotes) => {
+    //         return currentOptimisticVotes + 1
+    //     })
+    //     changeArticleVotes(article_id, 1)
+    //     .then(()=> {
+    //         setSuccessfulVote(true)
+    //     })
+    //     .catch((err) => {
+    //         setOptimisticVotes((currentOptimisticVotes) => {
+    //             return currentOptimisticVotes - 1
+    //         })
+    //         setFailedVote(true)
+    //     })
+    // }
 
-    const decrementVote = () => {
-        setSuccessfulVote(false)
-        setFailedVote(false)
+    // const decrementVote = () => {
+    //     setSuccessfulVote(false)
+    //     setFailedVote(false)
+    //     setOptimisticVotes((currentOptimisticVotes) => {
+    //         return currentOptimisticVotes - 1
+    //     })
+    //     changeArticleVotes(article_id, -1)
+    //     .then(() => {
+    //         setSuccessfulVote(true)
+    //     })
+    //     .catch((err) => {
+    //         setOptimisticVotes((currentOptimisticVotes) => {
+    //             return currentOptimisticVotes + 1
+    //         })
+    //         setFailedVote(true)
+    //     })
+    // }
+
+    const changeVote = (voteChange) => {
+        setSuccessfulVote(null)
         setOptimisticVotes((currentOptimisticVotes) => {
-            return currentOptimisticVotes - 1
+            return currentOptimisticVotes + voteChange
         })
-        changeArticleVotes(article_id, -1)
+        changeArticleVotes(article_id, voteChange)
         .then(() => {
             setSuccessfulVote(true)
         })
         .catch((err) => {
             setOptimisticVotes((currentOptimisticVotes) => {
-                return currentOptimisticVotes + 1
+                return currentOptimisticVotes - voteChange
             })
-            setFailedVote(true)
+            setSuccessfulVote(false)
         })
     }
 
@@ -70,13 +87,13 @@ const SingleArticle = () => {
             <p>View Comments: {singleArticle.comment_count}</p>
         </div>
         <div className="rate-it">
-            <button onClick={incrementVote}>Like it</button>
+            <button onClick={() => {changeVote(1)}}>Like it</button>
             <p>Votes: {singleArticle.votes + optimisticVotes}</p>
-            <button onClick={decrementVote}>Dislike it</button>
+            <button onClick={() => {changeVote(-1)}}>Dislike it</button>
         </div>
         <div className="pop-up">
             <p className={successfulVote === true ? "visible" : "hidden"}>Thanks for your vote!</p>
-            <p className={failedVote === true ? "visible" : "hidden"}>Oops, something went wrong! Please try again later</p>
+            <p className={successfulVote === false ? "visible" : "hidden"}>Oops, something went wrong! Please try again later</p>
         </div>
         </div>
     )
