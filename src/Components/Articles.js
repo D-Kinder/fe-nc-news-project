@@ -1,11 +1,12 @@
-import axios from 'axios'
 import {useState, useEffect} from 'react'
 import ArticleCard from './ArticleCard'
 import { getTopics, getArticles } from '../Helpers/Api'
+import {useParams} from 'react-router-dom'
 
 const Articles = () => {
 const [topics, setTopics] = useState([])
 const [allArticles, setAllArticles] = useState([])
+const {topic_slug} = useParams()
 
 useEffect(() => {
     getTopics().then((data) => {
@@ -14,10 +15,10 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-    getArticles().then((data) => {
+    getArticles(topic_slug).then((data) => {
         setAllArticles(data.data.articles)
     })
-}, [])
+}, [topic_slug])
 
     return (
         <div className="articles-page">

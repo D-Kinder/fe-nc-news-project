@@ -2,30 +2,19 @@ import axios from "axios";
 
 export function getTopics() {
     return axios.get("https://dk-nc-news.herokuapp.com/api/topics")
-    // .then((res) => {
-    //     return res
-    // })
 }
 
-export function getArticles() {
-    return axios.get("https://dk-nc-news.herokuapp.com/api/articles")
-    // .then((res) => {
-    //     return res
-    // })
+export function getArticles(topic_slug) {
+    return axios.get("https://dk-nc-news.herokuapp.com/api/articles",
+    {params: {topic: topic_slug}})
 }
 
 export function getArticleById (article_id) {
     return axios.get(`https://dk-nc-news.herokuapp.com/api/articles/${article_id}`)
-    // .then((res) => {
-    //     return res
-    // })
 }
 
 export function getArticlesByTopic(topic) {
     return axios.get(`https://dk-nc-news.herokuapp.com/api/articles?topic=${topic}`)
-    // .then((res) => {
-    //     return res
-    // })
 }
 
 export function changeArticleVotes (article_id, voteChange) {
@@ -33,9 +22,6 @@ export function changeArticleVotes (article_id, voteChange) {
     {
         inc_votes: voteChange
     })
-    // .then((res) => {
-    //     return res
-    // })
 }
 
 export function getCommentsByArticleId (article_id) {

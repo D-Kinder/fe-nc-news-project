@@ -18,7 +18,7 @@ const ArticleComments = (state) => {
             setArticle(data.article)
         })
     }, [article_id])
-    console.log(articleComments)
+    
 return (
     <div className="article-comments-page">
         <div className="back-to-article">
