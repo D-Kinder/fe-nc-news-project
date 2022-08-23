@@ -263,6 +263,60 @@ a:visited {
   margin-bottom: 4%;
 }
 
+.article-comments-page {
+  display: grid;
+  grid-template-columns: 0.5fr 5fr 0.5fr;
+  grid-template-rows: 0.5fr 1fr 4fr 3fr 0.5fr;
+  grid-template-areas:
+  ". back-to-article ." 
+  ". article-title ."
+ 
+  ". single-article-comments ."
+  
+  ". article-add-comment ."
+  ". single-article-user-response .";
+  height: 100%;
+}
+
+.back-to-article {
+  grid-area: back-to-article;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-title {
+  grid-area: article-title;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.single-article-comments {
+  grid-area: single-article-comments;
+  overflow: scroll;
+  border: 1px solid blue;
+  padding: 10px;
+}
+
+.article-comment {
+  padding: 10px;
+  border-bottom: 1px solid orange;;
+}
+
+.article-add-comment {
+  grid-area: article-add-comment;
+  border: 1px solid green;
+  overflow: scroll;
+  padding: 10px;
+}
+
+.single-article-user-response{
+  grid-area: single-article-user-response;
+}
+
 .topics-page {
   display:grid;
   grid-template-rows: 1fr 8fr;
@@ -604,6 +658,64 @@ ul{
     margin-right: 30%;
     margin-top: 4%;
     margin-bottom: 4%;
+  }
+
+  .article-comments-page {
+    display: grid;
+    grid-template-columns: 0.3fr 3fr 3fr 0.3fr;
+    grid-template-rows: 0.5fr 1fr 4fr 4fr 0.5fr;
+    grid-template-areas: 
+    ". back-to-article back-to-article ."
+    ". article-title article-title ."
+    ". single-article-comments article-add-comment ."
+    ". single-article-comments single-article-user-response ."
+    ". . . .";
+    height: 100%;
+  }
+
+  .back-to-article{
+    grid-area: back-to-article;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .single-article-user-response{
+    grid-area: single-article-user-response;
+  }
+  .article-title {
+    grid-area: article-title;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .single-article-comments {
+    grid-area: single-article-comments;
+    border: 1px solid blue;
+    overflow: scroll;
+    padding: 2px;
+  }
+
+  .article-comment {
+    padding: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid orange;;
+  }
+  
+  .article-add-comment {
+    grid-area: article-add-comment;
+    border: 1px solid green;
+  }
+
+  .single-article-comments-title {
+    grid-area: single-article-comments-title;
+  }
+
+  .single-article-add-comment-title {
+    grid-area: single-article-add-comment-title;
   }
 
   .topics-page {
