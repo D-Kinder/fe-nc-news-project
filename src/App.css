@@ -171,14 +171,51 @@ a:visited {
 
 .single-article-page {
   display:grid;
-  grid-template-rows: 1fr 6fr 1fr 1fr;
-  grid-template-columns: 1fr 4fr 1fr;
-  grid-template-areas:
-  ". back-to-articles ."
-  ". single-article ."
-  ". rate-it ."
-  ". article-comments .";
-  height: 100%;
+    grid-template-rows: 0.75fr 4fr 0.5fr 0.5fr 0.5fr;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas:
+    ". back-to-articles ."
+    ". single-article ."
+    ". rate-it ."
+    ". pop-up ."
+    ". article-comments .";
+    height: 100%;
+}
+
+.pop-up{
+  grid-area: pop-up;
+  display: block;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+  animation-name: slide;
+  animation-duration: 1.5s;;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 
