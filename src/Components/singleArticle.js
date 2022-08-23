@@ -6,8 +6,6 @@ const SingleArticle = () => {
     const [singleArticle, setSingleArticle] = useState({})
     const [optimisticVotes, setOptimisticVotes] = useState(0)
     const [successfulVote, setSuccessfulVote] = useState(null)
-    // const [failedVote, setFailedVote] = useState(false)
-
     const {article_id} = useParams()
 
     useEffect(() => {
@@ -15,42 +13,6 @@ const SingleArticle = () => {
             setSingleArticle(data.data.article)
         })
     }, [article_id])
-
-    // const incrementVote = () => {
-    //     setSuccessfulVote(false)
-    //     setFailedVote(false)
-    //     setOptimisticVotes((currentOptimisticVotes) => {
-    //         return currentOptimisticVotes + 1
-    //     })
-    //     changeArticleVotes(article_id, 1)
-    //     .then(()=> {
-    //         setSuccessfulVote(true)
-    //     })
-    //     .catch((err) => {
-    //         setOptimisticVotes((currentOptimisticVotes) => {
-    //             return currentOptimisticVotes - 1
-    //         })
-    //         setFailedVote(true)
-    //     })
-    // }
-
-    // const decrementVote = () => {
-    //     setSuccessfulVote(false)
-    //     setFailedVote(false)
-    //     setOptimisticVotes((currentOptimisticVotes) => {
-    //         return currentOptimisticVotes - 1
-    //     })
-    //     changeArticleVotes(article_id, -1)
-    //     .then(() => {
-    //         setSuccessfulVote(true)
-    //     })
-    //     .catch((err) => {
-    //         setOptimisticVotes((currentOptimisticVotes) => {
-    //             return currentOptimisticVotes + 1
-    //         })
-    //         setFailedVote(true)
-    //     })
-    // }
 
     const changeVote = (voteChange) => {
         setSuccessfulVote(null)
@@ -84,7 +46,7 @@ const SingleArticle = () => {
         <p>{singleArticle.body}</p>
         </div>
         <div className="article-comments">
-            <p>View Comments: {singleArticle.comment_count}</p>
+            <Link to={`/articles/${singleArticle.article_id}/comments`}>View Comments: {singleArticle.comment_count}</Link>
         </div>
         <div className="rate-it">
             <button onClick={() => {changeVote(1)}}>Like it</button>
