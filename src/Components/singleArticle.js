@@ -1,10 +1,12 @@
-import axios from 'axios'
 import {useParams, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
-import { getArticleById } from '../Helpers/Api'
+import { getArticleById, changeArticleVotes } from '../Helpers/Api'
 
 const SingleArticle = () => {
     const [singleArticle, setSingleArticle] = useState({})
+    const [optimisticVotes, setOptimisticVotes] = useState(0)
+    const [successfulVote, setSuccessfulVote] = useState(false)
+    const [failedVote, setFailedVote] = useState(false)
 
     const {article_id} = useParams()
 
@@ -12,9 +14,44 @@ const SingleArticle = () => {
         getArticleById(article_id).then((data) => {
             setSingleArticle(data.data.article)
         })
-    }, [])
+    }, [article_id])
 
-  console.log(singleArticle)
+    const incrementVote = () => {
+        setSuccessfulVote(false)
+        setFailedVote(false)
+        setOptimisticVotes((currentOptimisticVotes) => {
+            return currentOptimisticVotes + 1
+        })
+        changeArticleVotes(article_id, 1)
+        .then(()=> {
+            setSuccessfulVote(true)
+        })
+        .catch((err) => {
+            setOptimisticVotes((currentOptimisticVotes) => {
+                return currentOptimisticVotes - 1
+            })
+            setFailedVote(true)
+        })
+    }
+
+    const decrementVote = () => {
+        setSuccessfulVote(false)
+        setFailedVote(false)
+        setOptimisticVotes((currentOptimisticVotes) => {
+            return currentOptimisticVotes - 1
+        })
+        changeArticleVotes(article_id, -1)
+        .then(() => {
+            setSuccessfulVote(true)
+        })
+        .catch((err) => {
+            setOptimisticVotes((currentOptimisticVotes) => {
+                return currentOptimisticVotes + 1
+            })
+            setFailedVote(true)
+        })
+    }
+
     return (
         <div className="single-article-page">
         <Link to="/articles" className="back-to-articles">
@@ -33,9 +70,13 @@ const SingleArticle = () => {
             <p>View Comments: {singleArticle.comment_count}</p>
         </div>
         <div className="rate-it">
-            <button>Like it</button>
-            <p>Votes: {singleArticle.votes}</p>
-            <button>Dislike it</button>
+            <button onClick={incrementVote}>Like it</button>
+            <p>Votes: {singleArticle.votes + optimisticVotes}</p>
+            <button onClick={decrementVote}>Dislike it</button>
+        </div>
+        <div className="pop-up">
+            <p className={successfulVote === true ? "visible" : "hidden"}>Thanks for your vote!</p>
+            <p className={failedVote === true ? "visible" : "hidden"}>Oops, something went wrong! Please try again later</p>
         </div>
         </div>
     )
