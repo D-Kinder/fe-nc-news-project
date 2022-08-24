@@ -9,6 +9,7 @@ const ArticleComments = () => {
     const [loggedInUser, setLoggedInUser] = useState({"username":"tickle122","name":"Tom Tickle","avatar_url":"https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"})
     const [newComment, setNewComment] = useState({username: loggedInUser.username, body: ""})
     const [successfulPost, setSuccessfulPost] = useState(null)
+    const [submitted, setSubmitted] = useState(false)
     
     useEffect(() => {
         getCommentsByArticleId(article_id).then(({data}) => {
@@ -27,11 +28,17 @@ const ArticleComments = () => {
             username: loggedInUser.username,
             body: event.target.value
         })
+        setSubmitted(false)
     }
 
     const handleSubmit = (event) => {
-        setSuccessfulPost(null)
+
         event.preventDefault()
+        if(submitted) return
+
+        setSuccessfulPost(null)
+        setSubmitted(true)
+
         addCommentToArticle(article_id, newComment)
         .then(({data})=> {
             setNewComment({username: loggedInUser.username, body: ""})
@@ -70,9 +77,9 @@ return (
             <form onSubmit={handleSubmit}>
                 <p>Join the conversation and post your own comment!</p>
                 <br></br>
-                <textarea rows="10" onChange={handleChange} name="body" type="text" placeholder="Enter your comment here" value={newComment.body}/>
+                <textarea rows="10" onChange={handleChange} name="body" type="text" placeholder="Enter your comment here" value={newComment.body} required/>
                 <br></br>
-                <button type="submit">Submit</button>
+                <button disabled={submitted} type="submit">Submit</button>
             </form>
         </div>
         <div className="single-article-user-response">
