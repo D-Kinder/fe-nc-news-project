@@ -26,9 +26,9 @@ useEffect(() => {
         <div className="topic-filter">
             <p>Filtering goes here</p>
         </div>
-        <div className = "order-sort-reset">
+        {/* <div className = "order-sort-reset">
             <p>Order, sort and reset go here</p>
-        </div>
+        </div> */}
         <div className="add-article">
             <p>Add Article goes here</p>
         </div>

@@ -1,11 +1,14 @@
 import {useParams, Link} from 'react-router-dom'
-import { getCommentsByArticleId, getArticleById } from '../Helpers/Api'
+import { getCommentsByArticleId, getArticleById, addCommentToArticle } from '../Helpers/Api'
 import { useEffect, useState } from 'react'
 
-const ArticleComments = (state) => {
+const ArticleComments = () => {
     const [articleComments, setArticleComments] = useState([])
     const [article, setArticle] = useState({})
     const {article_id} = useParams()
+    const [loggedInUser, setLoggedInUser] = useState({"username":"tickle122","name":"Tom Tickle","avatar_url":"https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"})
+    const [newComment, setNewComment] = useState({username: loggedInUser.username, body: ""})
+    const [successfulPost, setSuccessfulPost] = useState(null)
     
     useEffect(() => {
         getCommentsByArticleId(article_id).then(({data}) => {
@@ -18,6 +21,30 @@ const ArticleComments = (state) => {
             setArticle(data.article)
         })
     }, [article_id])
+
+    const handleChange = (event) => {
+        setNewComment({
+            username: loggedInUser.username,
+            body: event.target.value
+        })
+    }
+
+    const handleSubmit = (event) => {
+        setSuccessfulPost(null)
+        event.preventDefault()
+        addCommentToArticle(article_id, newComment)
+        .then(({data})=> {
+            setNewComment({username: loggedInUser.username, body: ""})
+            setSuccessfulPost(true)
+            setArticleComments((currentArticleComments) => {
+                return [data.comment, ...currentArticleComments]
+            })
+        })
+        .catch((err) => {
+            setSuccessfulPost(false)
+        })
+        
+    }
     
 return (
     <div className="article-comments-page">
@@ -29,9 +56,9 @@ return (
         <p>{article.author}</p>
         </div>
         <section className="single-article-comments">
-            {articleComments.map(({author, body, votes}) => {
+            {articleComments.map(({author, body, votes, comment_id}) => {
                 return(
-                    <div className="article-comment">
+                    <div className="article-comment" key={comment_id}>
                     <p>{body}</p>
                     <br></br>
                     <p>Author: {author} - Votes: {votes}</p>
@@ -40,10 +67,17 @@ return (
             })}
         </section>
         <div className="article-add-comment">
-            <p>Comment Form</p>
+            <form onSubmit={handleSubmit}>
+                <p>Join the conversation and post your own comment!</p>
+                <br></br>
+                <textarea rows="10" onChange={handleChange} name="body" type="text" placeholder="Enter your comment here" value={newComment.body}/>
+                <br></br>
+                <button type="submit">Submit</button>
+            </form>
         </div>
         <div className="single-article-user-response">
-            <p>User response</p>
+            <p className={successfulPost === true ? "visible" : "hidden"}>Thanks for joining the conversation!</p>
+            <p className={successfulPost === false ? "visible" : "hidden"}>Oops, something went wrong! Please try again later</p>
         </div>
     </div>
 )

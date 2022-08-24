@@ -27,3 +27,8 @@ export function changeArticleVotes (article_id, voteChange) {
 export function getCommentsByArticleId (article_id) {
     return axios.get(`https://dk-nc-news.herokuapp.com/api/articles/${article_id}/comments`)
 }
+
+export function addCommentToArticle (article_id, newComment) {
+    return axios.post(`https://dk-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+    newComment)
+}
