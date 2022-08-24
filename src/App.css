@@ -266,7 +266,7 @@ a:visited {
 .article-comments-page {
   display: grid;
   grid-template-columns: 0.5fr 5fr 0.5fr;
-  grid-template-rows: 0.5fr 1fr 4fr 3fr 0.5fr;
+  grid-template-rows: 0.5fr 1fr 3.5fr 3.5fr 0.5fr;
   grid-template-areas:
   ". back-to-article ." 
   ". article-title ."
@@ -311,6 +311,11 @@ a:visited {
   border: 1px solid green;
   overflow: scroll;
   padding: 10px;
+  
+}
+
+textarea {
+  width: 80%;
 }
 
 .single-article-user-response{
@@ -663,12 +668,14 @@ ul{
   .article-comments-page {
     display: grid;
     grid-template-columns: 0.3fr 3fr 3fr 0.3fr;
-    grid-template-rows: 0.5fr 1fr 4fr 4fr 0.5fr;
+    grid-template-rows: 0.5fr 1fr 1.5fr 2.5fr 2fr 2fr 1fr;
     grid-template-areas: 
     ". back-to-article back-to-article ."
     ". article-title article-title ."
-    ". single-article-comments article-add-comment ."
     ". single-article-comments single-article-user-response ."
+    ". single-article-comments article-add-comment ."
+    ". single-article-comments article-add-comment ."
+    ". single-article-comments . ."
     ". . . .";
     height: 100%;
   }
@@ -683,6 +690,12 @@ ul{
 
   .single-article-user-response{
     grid-area: single-article-user-response;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
   }
   .article-title {
     grid-area: article-title;
@@ -708,14 +721,15 @@ ul{
   .article-add-comment {
     grid-area: article-add-comment;
     border: 1px solid green;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   }
 
-  .single-article-comments-title {
-    grid-area: single-article-comments-title;
-  }
-
-  .single-article-add-comment-title {
-    grid-area: single-article-add-comment-title;
+  textarea {
+    width: 75%;
+    height: 70%;
   }
 
   .topics-page {

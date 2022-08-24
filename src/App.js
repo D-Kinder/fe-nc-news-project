@@ -8,6 +8,7 @@ import Endpoints from "./Components/Endpoints"
 import SingleArticle from './Components/singleArticle';
 import TopicArticles from './Components/TopicArticles';
 import ArticleComments from './Components/ArticleComments';
+import Users from './Components/Users';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/endpoints" element={<Endpoints />}/>
         <Route path="/articles/:article_id" element={<SingleArticle />}/>
         <Route path="/articles/:article_id/comments" element={<ArticleComments/>}/>
+        <Route path="/users" element={<Users />}/>
       </Routes>
     </div>
     </BrowserRouter>
