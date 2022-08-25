@@ -4,9 +4,9 @@ export function getTopics() {
     return axios.get("https://dk-nc-news.herokuapp.com/api/topics")
 }
 
-export function getArticles(topic_slug) {
+export function getArticles(chosenTopic, chosenSortBy, chosenOrder) {
     return axios.get("https://dk-nc-news.herokuapp.com/api/articles",
-    {params: {topic: topic_slug}})
+    {params: {topic: chosenTopic, sort_by: chosenSortBy, order: chosenOrder}})
 }
 
 export function getArticleById (article_id) {

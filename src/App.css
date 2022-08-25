@@ -133,12 +133,11 @@ a:visited {
 .articles-page {
   display:grid;
   grid-template-rows: 0.5fr 0.5fr 0.5fr 8fr;
-  grid-template-columns: 6fr 4fr;
   grid-template-areas:
-  "topic-filter order-sort-reset"
-  "add-article add-article"
-  "articles-title articles-title"
-  "articles articles";
+  "topic-filter"
+  "add-article"
+  "articles-title"
+  "articles";
   height: 100%;
 }
 
@@ -159,6 +158,10 @@ a:visited {
 
 .topic-filter {
   grid-area: topic-filter;
+  display: inline-block;
+  flex-direction: row;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .order-sort-reset {
@@ -532,11 +535,10 @@ ul{
   .articles-page {
     display:grid;
     grid-template-columns: 2fr 8fr;
-    grid-template-rows: 1fr 2.5fr 2.5fr 4fr;
+    grid-template-rows: 1fr 5fr 4fr;
     grid-template-areas:
     ". articles-title"
     "topic-filter articles"
-    "order-sort-reset articles"
     "add-article articles";
     height: 100%;
   }
