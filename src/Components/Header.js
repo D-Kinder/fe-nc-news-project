@@ -9,10 +9,12 @@ const Header = () => {
         <header className="top">
        <div className="heading">
            <h1 className="title">DK NC News</h1>
-           <Link to="/users" className="user">
+           <div className="user">
+           <Link to="/users" className="users">
                <p>{currentUser.username}</p>
                <img className="user-avatar" src={currentUser.avatar_url} alt={currentUser.username}></img>
            </Link>
+           </div>
        </div>
        <div className="quicklinks">
            <Link to="/">Home</Link>

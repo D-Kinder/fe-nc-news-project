@@ -38,9 +38,9 @@ const resetFilters = () => {
     }
     return (
         <div className="articles-page">
-        <h4 className="articles-title">Articles</h4>
+        <h2 className="articles-title">Articles</h2>
         <div className="topic-filter">
-            <p>Refine your search:</p>
+            <p className="text">Refine your search:</p>
             <form>
             <FilterDropDown setChosenTopic={setChosenTopic}/>
             <SortByDropDown setChosenSortBy={setChosenSortBy}/>
@@ -55,6 +55,7 @@ const resetFilters = () => {
         <section className="articles">
             {allArticles.map(({article_id, author, body, comment_count, title, topic, votes}) => {
                 return (
+                    <div className="article-card">
                     <ArticleCard
                         key={article_id}
                         author={author}
@@ -65,6 +66,7 @@ const resetFilters = () => {
                         votes={votes}
                         article_id={article_id}
                         />
+                        </div>
                 )
             })}
         </section>

@@ -2,6 +2,7 @@
   text-align: center;
   overflow: scroll;
   height: 100vh;
+  font-family: Georgia, 'Times New Roman', Times, serif
 }
 
 * {
@@ -25,8 +26,41 @@
   grid-template-columns: 7fr 3fr;
   grid-template-areas: 
   "Title User";
-  border: 1px solid black;
   height: 75px;
+  background-color: rgb(255, 255, 255)
+}
+
+
+
+h2 {
+  color:midnightblue;
+}
+
+h3 {
+  color: gold;
+}
+
+.text {
+  color: white;
+}
+
+.text-blue {
+  color: midnightblue;
+}
+
+.topic-heading {
+  text-decoration: underline;
+  text-decoration-color: orange;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+button {
+  background-color: midnightblue;
+  color: white;
+  padding: 7px;
+  border-radius: 25px 25px 0px 25px;
+  border: 2px solid orange;
 }
 
 .title {
@@ -34,8 +68,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  border: 1px solid red;
+  align-items: left;
+  text-decoration: underline;
+  text-decoration-color: orange;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
 }
 
 .user {
@@ -44,6 +81,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-left: 2px double rgb(228, 224, 224);;
 }
 
 a {
@@ -56,30 +94,35 @@ a:visited {
 }
 
 .quicklinks {
-  border: 1px solid blue;
+  border: 2px solid orange;
   height: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  background-color: rgb(228, 224, 224);
 }
 
 .home {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  border: 1px solid green;
+  align-items: center;
   overflow: scroll;
   height: 100%;
+  background-color: rgb(252, 252, 205);
+  animation-name: slide;
+  animation-duration: 0.75s;
 }
 
 .home-links {
   border: 1px solid orange;
   margin-left: 30px;
   margin-right: 30px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-right: 45px;
+  padding-left: 45px;
 }
 
 .top {
@@ -90,44 +133,59 @@ a:visited {
 }
 
 #home-intro {
-  margin-top: 80px;
-  height: 50px;
+  height: 100px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  transition: background-color 0.4s linear;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
 }
 
-#home-endpoints {
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#home-intro:hover{
+  background-color: white;
+  transition: 0.3s;
 }
 
 #home-topics {
-  height: 50px;
+  height: 100px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
+}
+
+#home-intro:hover{
+  background-color: white;
+  opacity: 0.6;
 }
 
 #home-articles {
-  height: 50px;
+  height: 100px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-#home-comments {
-  height: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
 }
 
 .articles-page {
@@ -139,6 +197,9 @@ a:visited {
   "articles-title"
   "articles";
   height: 100%;
+  background-color: rgb(252, 252, 205);
+  animation-name: slide;
+  animation-duration: 0.75s;
 }
 
 .articles {
@@ -150,6 +211,17 @@ a:visited {
   overflow:scroll;
   padding-bottom: 20px;
   padding-top:20px;
+  
+}
+
+.article-card {
+  background-color: midnightblue;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
 }
 
 .articles-title {
@@ -183,6 +255,9 @@ a:visited {
     ". pop-up ."
     ". article-comments .";
     height: 100%;
+    background-color: rgb(252, 252, 205);
+    animation-name: slide;
+  animation-duration: 0.75s;
 }
 
 .pop-up{
@@ -200,7 +275,7 @@ a:visited {
 .visible {
   visibility: visible;
   animation-name: slide;
-  animation-duration: 1.5s;;
+  animation-duration: 1.5s;
 }
 
 @keyframes slide {
@@ -226,9 +301,12 @@ a:visited {
   grid-area: single-article;
   display: flex;
   flex-direction: column;
-  border: 1px solid brown;
   overflow: scroll;
   padding-top: 20px;
+  background-color: midnightblue;
+  padding: 20px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
 }
 
 .article-comments {
@@ -247,9 +325,22 @@ a:visited {
     align-items: center;
 }
 
+.rated-it {
+  grid-area: rate-it;
+  display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.rated-it button {
+  height: 50%;
+  padding: 5px;
+}
+
 .rate-it button {
   height: 50%;
-  background-color: red;
+  background-color: midnightblue;
   padding: 5px;
 }
 
@@ -273,12 +364,13 @@ a:visited {
   grid-template-areas:
   ". back-to-article ." 
   ". article-title ."
- 
   ". single-article-comments ."
-  
   ". article-add-comment ."
   ". single-article-user-response .";
   height: 100%;
+  background-color: rgb(252, 252, 205);
+  animation-name: slide;
+  animation-duration: 0.75s;
 }
 
 .back-to-article {
@@ -300,21 +392,22 @@ a:visited {
 .single-article-comments {
   grid-area: single-article-comments;
   overflow: scroll;
-  border: 1px solid blue;
   padding: 10px;
 }
 
 .article-comment {
   padding: 10px;
-  border-bottom: 1px solid orange;;
+  background-color: midnightblue;
+  margin-bottom: 10px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
 }
 
 .article-add-comment {
   grid-area: article-add-comment;
-  border: 1px solid green;
   overflow: scroll;
   padding: 10px;
-  
+  margin-top: 10px;
 }
 
 textarea {
@@ -333,7 +426,7 @@ textarea {
   ". topics-title ."
   ". topics-list .";
   height: 100%;
-
+  background-color: rgb(252, 252, 205);
 }
 
 .topics-title {
@@ -342,11 +435,18 @@ textarea {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation-name: slide;
+  animation-duration: 0.75s;
+  
 }
 
 .topics-list {
   grid-area: topics-list;
   overflow: scroll;
+}
+
+button:hover {
+  background-color: orange;
 }
 
 ul{
@@ -355,7 +455,22 @@ ul{
 
 .single-topic {
   padding: 50px;
-  border: 1px solid red;
+  background-color: midnightblue;
+  margin-bottom: 20px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
+  color: white;
+  animation-name: slide;
+  animation-duration: 0.75s;
+}
+
+.single-topic:hover {
+  background-color: white;
+}
+
+h4 {
+  color: white;
+  font-size: 1.25rem
 }
 
 .topic-articles-page {
@@ -411,28 +526,40 @@ ul{
   "current-user"
   "users-list";
   height: 100%;
+  background-color: rgb(252, 252, 205);
 }
 
 .current-user {
   grid-area: current-user;
-  border: 1px solid blue;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  background-color: midnightblue;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
+  
 }
 
 .users-list {
   grid-area: users-list;
   overflow:scroll;
-  border: 1px solid green;
 }
 
 .single-user {
   margin: 10px;
   border: 1px solid orange;
   padding: 10px;
+  background-color: midnightblue;
+  margin-left: 40px;
+  margin-right: 40px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
 }
 
 .user-avatar {

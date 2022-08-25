@@ -7,7 +7,8 @@ const ArticleCard = ({article_id, author, body, comment_count, title, topic, vot
         <Link to={`/articles/${article_id}`}>
         <article className="single-article">
         <h4>{title}</h4>
-        <p>{author}</p>
+        <br></br>
+        <p className="text">{author}</p>
         </article>
         </Link>
         </div>

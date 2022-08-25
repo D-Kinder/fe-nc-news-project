@@ -21,8 +21,8 @@ const Users = () => {
     return (
         <div className="users-page">
             <div className="current-user">
-                <h2 className="current-user-username">Current User:</h2>
-                <h2 className="current-user-username">{currentUser.username}</h2>
+                <h3 className="current-user-username">Current User:</h3>
+                <h3 className="current-user-username">{currentUser.username}</h3>
                 <img className="current-user-avatar" src={currentUser.avatar_url} alt={currentUser.username}></img>
             </div>
             <section className="users-list">
@@ -33,6 +33,7 @@ const Users = () => {
                         <h4>{user.username}</h4>
                         <br></br>
                         <img className="user-avatar" src={user.avatar_url} alt={user.username}></img>
+                        <br></br>
                         <br></br>
                         <button onClick={() => setCurrentUser(user)}>Select this user</button>
                         </li>

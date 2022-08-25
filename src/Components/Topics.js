@@ -16,16 +16,16 @@ const Topics = () => {
     if(isLoading) return <p>Loading...</p>
     return (
         <div className="topics-page">
-            <h4 className="topics-title">TOPICS</h4>
+            <h2 className="topics-title">TOPICS</h2>
             <section className="topics-list">
                 <ul>
                 {topics.map((topic) => {
                     return (
                         <li className="single-topic" key={topic.slug}>
                             <Link to={`/topics/${topic.slug}`}>
-                        <h4>{topic.slug}</h4>
+                        <h4 className="topic-heading">{topic.slug}</h4>
                         <br></br>
-                        <p>{topic.description}</p>
+                        <h4>{topic.description}</h4>
                         </Link>
                         </li>
                     )
