@@ -1,34 +1,43 @@
 import {useState, useEffect} from 'react'
 import ArticleCard from './ArticleCard'
-import { getTopics, getArticles } from '../Helpers/Api'
+import { getArticles } from '../Helpers/Api'
 import {useParams} from 'react-router-dom'
+import { FilterDropDown, SortByDropDown, OrderDropDown } from './DropDowns'
+import {Link} from 'react-router-dom'
 
 const Articles = () => {
-const [topics, setTopics] = useState([])
-const [allArticles, setAllArticles] = useState([])
-const {topic_slug} = useParams()
+    const {topic_slug} = useParams()
+    const [allArticles, setAllArticles] = useState([])
+    const [chosenTopic, setChosenTopic] = useState(topic_slug)
+    const [chosenSortBy, setChosenSortBy] = useState("created_at")
+    const [chosenOrder, setChosenOrder] = useState("desc")
+
 
 useEffect(() => {
-    getTopics().then((data) => {
-        setTopics(data.data.topics)
-    })
-}, [])
-
-useEffect(() => {
-    getArticles(topic_slug).then((data) => {
+    getArticles(chosenTopic, chosenSortBy, chosenOrder).then((data) => {
         setAllArticles(data.data.articles)
     })
-}, [topic_slug])
+}, [topic_slug, chosenTopic, chosenSortBy, chosenOrder])
+
+const resetFilters = () => {
+    setChosenTopic(topic_slug)
+    setChosenSortBy("created_at")
+    setChosenOrder("desc")
+}
 
     return (
         <div className="articles-page">
         <h4 className="articles-title">Articles</h4>
         <div className="topic-filter">
-            <p>Filtering goes here</p>
+            <p>Refine your search:</p>
+            <form>
+            <FilterDropDown setChosenTopic={setChosenTopic}/>
+            <SortByDropDown setChosenSortBy={setChosenSortBy}/>
+            <OrderDropDown setChosenOrder={setChosenOrder}/>
+            <br></br>
+            <button type="reset" onClick={resetFilters}>Reset Filters</button>
+            </form>
         </div>
-        {/* <div className = "order-sort-reset">
-            <p>Order, sort and reset go here</p>
-        </div> */}
         <div className="add-article">
             <p>Add Article goes here</p>
         </div>
