@@ -404,6 +404,50 @@ ul{
   align-items: center;
 }
 
+.users-page{
+  display: grid;
+  grid-template-rows: 1.5fr 8fr;
+  grid-template-areas: 
+  "current-user"
+  "users-list";
+  height: 100%;
+}
+
+.current-user {
+  grid-area: current-user;
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.users-list {
+  grid-area: users-list;
+  overflow:scroll;
+  border: 1px solid green;
+}
+
+.single-user {
+  margin: 10px;
+  border: 1px solid orange;
+  padding: 10px;
+}
+
+.user-avatar {
+  width:auto;
+  max-height: 50px;
+}
+
+.current-user-avatar {
+  max-height: 50px;
+}
+
+.current-user-username {
+  margin-right:20px;
+}
+
 }
 
 
@@ -818,6 +862,48 @@ ul{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  }
+
+  .users-page{
+    display: grid;
+    grid-template-rows: 2fr 8fr;
+    grid-template-areas: 
+    "current-user"
+    "users-list";
+    height: 100%;
+  }
+  
+  .current-user {
+    grid-area: current-user;
+    border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  }
+  
+  .user-list {
+    grid-area: users-list;
+  }
+
+  .single-user {
+    margin: 10px;
+    border: 1px solid orange;
+    padding: 10px;
+  }
+  
+  .user-avatar {
+    width:auto;
+    max-height: 50px;
+  }
+  
+  .current-user-avatar {
+    max-height: 50px;
+  }
+  
+  .current-user-username {
+    margin-right:20px;
   }
 }
 

@@ -23,7 +23,7 @@ export function FilterDropDown({setChosenTopic}) {
 }
 
 export function SortByDropDown ({setChosenSortBy}) {
-    const validSortBys = ["title", "topic", "author", "body", "votes", "article_id"]
+    const validSortBys = ["votes", "comment_count"]
 
     const handleChange = (event) => {
         setChosenSortBy(event.target.value)
