@@ -10,6 +10,7 @@ import ArticleComments from './Components/ArticleComments';
 import Users from './Components/Users';
 import { BrowserRouter } from 'react-router-dom';
 import { UserContext } from './Components/User';
+import NotFound from "./Components/NotFound"
 import {useState} from 'react'
 import './App.css';
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/articles/:article_id" element={<SingleArticle />}/>
         <Route path="/articles/:article_id/comments" element={<ArticleComments/>}/>
         <Route path="/users" element={<Users />}/>
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </div>
     </UserContext.Provider>
