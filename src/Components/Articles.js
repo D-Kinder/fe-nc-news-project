@@ -10,10 +10,12 @@ const Articles = () => {
     const [chosenTopic, setChosenTopic] = useState(topic_slug)
     const [chosenSortBy, setChosenSortBy] = useState("created_at")
     const [chosenOrder, setChosenOrder] = useState("desc")
+    const [isLoading, setIsLoading] = useState(true)
 
 
 useEffect(() => {
     getArticles(chosenTopic, chosenSortBy, chosenOrder).then((data) => {
+        setIsLoading(false)
         setAllArticles(data.data.articles)
     })
 }, [topic_slug, chosenTopic, chosenSortBy, chosenOrder])
@@ -23,7 +25,7 @@ const resetFilters = () => {
     setChosenSortBy("created_at")
     setChosenOrder("desc")
 }
-
+    if(isLoading) return <p>Loading...</p>
     return (
         <div className="articles-page">
         <h4 className="articles-title">Articles</h4>

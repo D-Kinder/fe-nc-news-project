@@ -5,17 +5,19 @@ import { useContext } from "react"
 
 const Users = () => {
     const [users, setUsers] = useState([])
-
+    const [isLoading, setIsLoading] = useState(true)
     const {currentUser, setCurrentUser} = useContext(UserContext)
 
-    const [currentSelectedUser, setCurrentSelectedUser] = useState({"username":"tickle122","name":"Tom Tickle","avatar_url":"https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"})
+    // const [currentSelectedUser, setCurrentSelectedUser] = useState({"username":"tickle122","name":"Tom Tickle","avatar_url":"https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"})
 
     useEffect(() => {
         getUsers().then(({data}) => {
+            setIsLoading(false)
             setUsers(data.users)
         })
     }, [])
 
+    if(isLoading) return <p>Loading...</p>
     return (
         <div className="users-page">
             <div className="current-user">

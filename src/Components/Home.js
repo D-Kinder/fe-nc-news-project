@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom'
 
 const Home = () => {
+
     return (
         <div className="home">
         <section id ="home-intro" className="home-links">
@@ -17,11 +18,6 @@ const Home = () => {
         <Link to="/articles">Articles</Link>
         <br></br>
         <p>Jump right in to some exciting articles!</p>
-        </section>
-        <section id="home-comments" className="home-links">
-        <Link to="/comments">Comments</Link>
-        <br></br>
-        <p>Leave your mark by dropping a comment!</p>
         </section>
         </div>
     )

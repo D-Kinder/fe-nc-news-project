@@ -17,7 +17,6 @@ const Header = () => {
        <div className="quicklinks">
            <Link to="/">Home</Link>
            <Link to="/articles">Articles</Link>
-           <Link to="/comments">Comments</Link>
            <Link to="/topics">Topics</Link>
        </div>
        </header>

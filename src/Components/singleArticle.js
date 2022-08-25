@@ -7,10 +7,12 @@ const SingleArticle = () => {
     const [optimisticVotes, setOptimisticVotes] = useState(0)
     const [successfulVote, setSuccessfulVote] = useState(null)
     const {article_id} = useParams()
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         getArticleById(article_id).then((data) => {
             setSingleArticle(data.data.article)
+            setIsLoading(false)
         })
     }, [article_id])
 
@@ -31,7 +33,8 @@ const SingleArticle = () => {
         })
     }
     const date = new Date(singleArticle.created_at).toGMTString()
-    
+
+    if(isLoading) return <p>Loading...</p>
     return (
         <div className="single-article-page">
         <Link to="/articles" className="back-to-articles">
