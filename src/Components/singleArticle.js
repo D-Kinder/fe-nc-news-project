@@ -22,6 +22,7 @@ const SingleArticle = () => {
     }, [article_id])
     
     const changeVote = (voteChange) => {
+    
         setSuccessfulVote(null)
         setOptimisticVotes((currentOptimisticVotes) => {
             return currentOptimisticVotes + voteChange
@@ -49,26 +50,28 @@ const SingleArticle = () => {
         <button >Back to Articles</button>
         </Link>
         <div className="single-article">
-        <h3>{singleArticle.title}</h3>
-        <p>Author: {singleArticle.author}</p>
+        <h4>{singleArticle.title}</h4>
         <br></br>
-        <p>Topic: {singleArticle.topic}</p>
+        <p className="text">Author: {singleArticle.author}</p>
         <br></br>
-        <p>Date Created: {date}</p>
+        <p className="text">Topic: {singleArticle.topic}</p>
         <br></br>
-        <p>{singleArticle.body}</p>
+        <p className="text">Date Created: {date}</p>
+        <br></br>
+        <br></br>
+        <p className="text">{singleArticle.body}</p>
         </div>
         <div className="article-comments">
-            <Link to={`/articles/${singleArticle.article_id}/comments`}>View Comments: {singleArticle.comment_count}</Link>
+            <Link className="text-blue" to={`/articles/${singleArticle.article_id}/comments`}>View Comments: {singleArticle.comment_count}</Link>
         </div>
-        <div className="rate-it">
-            <button onClick={() => {changeVote(1)}}>Like it</button>
-            <p>Votes: {singleArticle.votes + optimisticVotes}</p>
-            <button onClick={() => {changeVote(-1)}}>Dislike it</button>
+        <div className={successfulVote === true ? "rated-it" : "rate-it"}>
+            <button disabled={successfulVote} onClick={() => {changeVote(1)}}>Like this comment</button>
+            <p className="text-blue">Votes: {singleArticle.votes + optimisticVotes}</p>
+            <button disabled={successfulVote} onClick={() => {changeVote(-1)}}>Dislike this comment</button>
         </div>
         <div className="pop-up">
-            <p className={successfulVote === true ? "visible" : "hidden"}>Thanks for your vote!</p>
-            <p className={successfulVote === false ? "visible" : "hidden"}>Oops, something went wrong! Please try again later</p>
+            <p className={successfulVote === true ? "visible text-blue" : "hidden"}>Thanks for your vote!</p>
+            <p className={successfulVote === false ? "visible text-blue" : "hidden"}>Oops, something went wrong! Please try again later</p>
         </div>
         </div>
     )
