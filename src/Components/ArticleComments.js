@@ -3,6 +3,7 @@ import { getCommentsByArticleId, getArticleById, addCommentToArticle, deleteComm
 import { useEffect, useState } from 'react'
 import { UserContext } from './User'
 import { useContext } from 'react'
+import ErrorComponent from './ErrorComponent'
 
 const ArticleComments = () => {
     const [articleComments, setArticleComments] = useState([])
@@ -14,11 +15,15 @@ const ArticleComments = () => {
     const {currentUser} = useContext(UserContext)
     const [newComment, setNewComment] = useState({username: currentUser.username, body: ""})
     const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
     
     useEffect(() => {
         getCommentsByArticleId(article_id).then(({data}) => {
             setIsLoading(false)
             setArticleComments(data.comments)
+        }).catch((err) => {
+            setError({err})
+            setIsLoading(false)
         })
     }, [article_id])
 
@@ -77,6 +82,9 @@ const ArticleComments = () => {
     }
     
     if(isLoading) return <p>Loading...</p>
+    if(error) {
+        return <ErrorComponent message = {error.err.message} code={error.err.response.request.status} />
+    }
     return (
     <div className="article-comments-page">
         <div className="back-to-article">

@@ -3,6 +3,7 @@ import ArticleCard from './ArticleCard'
 import { getArticles } from '../Helpers/Api'
 import {useParams} from 'react-router-dom'
 import { FilterDropDown, SortByDropDown, OrderDropDown } from './DropDowns'
+import ErrorComponent from './ErrorComponent'
 
 const Articles = () => {
     const {topic_slug} = useParams()
@@ -11,12 +12,18 @@ const Articles = () => {
     const [chosenSortBy, setChosenSortBy] = useState("created_at")
     const [chosenOrder, setChosenOrder] = useState("desc")
     const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
 
 
 useEffect(() => {
     getArticles(chosenTopic, chosenSortBy, chosenOrder).then((data) => {
+        if(data.data.articles.length > 0){
         setIsLoading(false)
         setAllArticles(data.data.articles)
+        } else {
+            setError({message: "Request failed with status code 404", code: 404})
+            setIsLoading(false)
+        }
     })
 }, [topic_slug, chosenTopic, chosenSortBy, chosenOrder])
 
@@ -26,6 +33,9 @@ const resetFilters = () => {
     setChosenOrder("desc")
 }
     if(isLoading) return <p>Loading...</p>
+    if(error) {
+        return <ErrorComponent message = {error.message} code={error.code} />
+    }
     return (
         <div className="articles-page">
         <h4 className="articles-title">Articles</h4>

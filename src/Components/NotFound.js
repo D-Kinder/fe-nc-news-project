@@ -6,7 +6,7 @@ const NotFound = () => {
         <div className="not-found-page">
             <div className="not-found-message">
                 <h2>Oops, this page doesn't exist!</h2>
-                <p>Follow the links below to the area you are looking for, or enter a URL in one of the forms below for something more specific</p>
+                <p>Looks like you entered an incorrect pathway.  Follow the links below to the area you are looking for, or enter a URL in one of the forms below for something more specific</p>
             </div>
             <div className="not-found-articles">
                 <Link to="/articles">
