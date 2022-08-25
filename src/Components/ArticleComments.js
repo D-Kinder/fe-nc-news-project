@@ -13,15 +13,18 @@ const ArticleComments = () => {
     const [submitted, setSubmitted] = useState(false)
     const {currentUser} = useContext(UserContext)
     const [newComment, setNewComment] = useState({username: currentUser.username, body: ""})
+    const [isLoading, setIsLoading] = useState(true)
     
     useEffect(() => {
         getCommentsByArticleId(article_id).then(({data}) => {
+            setIsLoading(false)
             setArticleComments(data.comments)
         })
     }, [article_id])
 
     useEffect(() => {
         getArticleById(article_id).then(({data}) => {
+            setIsLoading(false)
             setArticle(data.article)
         })
     }, [article_id])
@@ -37,6 +40,7 @@ const ArticleComments = () => {
     const handleSubmit = (event) => {
 
         event.preventDefault()
+        setIsLoading(true)
         if(submitted) return
 
         setSuccessfulPost(null)
@@ -49,6 +53,7 @@ const ArticleComments = () => {
             setArticleComments((currentArticleComments) => {
                 return [data.comment, ...currentArticleComments]
             })
+            setIsLoading(false)
         })
         .catch((err) => {
             setSuccessfulPost(false)
@@ -57,6 +62,7 @@ const ArticleComments = () => {
     }
 
     const handleDelete = (comment_id) => {
+        setIsLoading(true)
         setSuccessfulPost(null)
         deleteComment(comment_id).then(() => {
             const filteredComments = articleComments.filter((comment) => {
@@ -64,12 +70,14 @@ const ArticleComments = () => {
             })
             setArticleComments(filteredComments)
             setSuccessfulPost(true)
+            setIsLoading(false)
         }).catch((err) => {
             setSuccessfulPost(false)
         })
     }
     
-return (
+    if(isLoading) return <p>Loading...</p>
+    return (
     <div className="article-comments-page">
         <div className="back-to-article">
             <Link to={`/articles/${article_id}`}>Back to Article</Link>

@@ -5,13 +5,16 @@ import { getTopics } from '../Helpers/Api'
 
 const Topics = () => {
     const [topics, setTopics] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         getTopics().then((data) => {
             setTopics(data.data.topics)
+            setIsLoading(false)
         })
     }, [])
 
+    if(isLoading) return <p>Loading...</p>
     return (
         <div className="topics-page">
             <h4 className="topics-title">TOPICS</h4>

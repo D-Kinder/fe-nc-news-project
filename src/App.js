@@ -1,7 +1,6 @@
 import Header from './Components/Header';
 import {Routes, Route} from 'react-router-dom'
 import Articles from './Components/Articles';
-import Comments from './Components/Comments';
 import Topics from './Components/Topics';
 import Home from "./Components/Home"
 import Endpoints from "./Components/Endpoints"
@@ -25,7 +24,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/articles" element={<Articles />}/>
-        <Route path="/comments" element={<Comments />}/>
         <Route path="/topics" element={<Topics />}/>
         <Route path="/topics/:topic_slug" element={<Articles />}/>
         <Route path="/endpoints" element={<Endpoints />}/>
