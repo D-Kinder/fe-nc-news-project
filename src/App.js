@@ -10,11 +10,16 @@ import TopicArticles from './Components/TopicArticles';
 import ArticleComments from './Components/ArticleComments';
 import Users from './Components/Users';
 import { BrowserRouter } from 'react-router-dom';
+import { UserContext } from './Components/User';
+import {useState} from 'react'
 import './App.css';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({"username":"tickle122","name":"Tom Tickle","avatar_url":"https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"})
+
   return (
     <BrowserRouter>
+    <UserContext.Provider value={{currentUser, setCurrentUser}}>
     <div className="App">
       <Header />
       <Routes>
@@ -29,6 +34,7 @@ function App() {
         <Route path="/users" element={<Users />}/>
       </Routes>
     </div>
+    </UserContext.Provider>
     </BrowserRouter>
   );
 }

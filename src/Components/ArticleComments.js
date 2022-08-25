@@ -1,15 +1,18 @@
 import {useParams, Link} from 'react-router-dom'
-import { getCommentsByArticleId, getArticleById, addCommentToArticle } from '../Helpers/Api'
+import { getCommentsByArticleId, getArticleById, addCommentToArticle, deleteComment } from '../Helpers/Api'
 import { useEffect, useState } from 'react'
+import { UserContext } from './User'
+import { useContext } from 'react'
 
 const ArticleComments = () => {
     const [articleComments, setArticleComments] = useState([])
     const [article, setArticle] = useState({})
     const {article_id} = useParams()
-    const [loggedInUser, setLoggedInUser] = useState({"username":"tickle122","name":"Tom Tickle","avatar_url":"https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"})
-    const [newComment, setNewComment] = useState({username: loggedInUser.username, body: ""})
+    // const [loggedInUser, setLoggedInUser] = useState({"username":"tickle122","name":"Tom Tickle","avatar_url":"https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"})
     const [successfulPost, setSuccessfulPost] = useState(null)
     const [submitted, setSubmitted] = useState(false)
+    const {currentUser} = useContext(UserContext)
+    const [newComment, setNewComment] = useState({username: currentUser.username, body: ""})
     
     useEffect(() => {
         getCommentsByArticleId(article_id).then(({data}) => {
@@ -25,7 +28,7 @@ const ArticleComments = () => {
 
     const handleChange = (event) => {
         setNewComment({
-            username: loggedInUser.username,
+            username: currentUser.username,
             body: event.target.value
         })
         setSubmitted(false)
@@ -41,7 +44,7 @@ const ArticleComments = () => {
 
         addCommentToArticle(article_id, newComment)
         .then(({data})=> {
-            setNewComment({username: loggedInUser.username, body: ""})
+            setNewComment({username: currentUser.username, body: ""})
             setSuccessfulPost(true)
             setArticleComments((currentArticleComments) => {
                 return [data.comment, ...currentArticleComments]
@@ -51,6 +54,19 @@ const ArticleComments = () => {
             setSuccessfulPost(false)
         })
         
+    }
+
+    const handleDelete = (comment_id) => {
+        setSuccessfulPost(null)
+        deleteComment(comment_id).then(() => {
+            const filteredComments = articleComments.filter((comment) => {
+                return comment.comment_id !== comment_id
+            })
+            setArticleComments(filteredComments)
+            setSuccessfulPost(true)
+        }).catch((err) => {
+            setSuccessfulPost(false)
+        })
     }
     
 return (
@@ -69,9 +85,12 @@ return (
                     <p>{body}</p>
                     <br></br>
                     <p>Author: {author} - Votes: {votes}</p>
+                    {currentUser.username === author ? <button 
+                    onClick={()=>handleDelete(comment_id)}>Delete</button> : ""}
                     </div>
                 )
             })}
+            
         </section>
         <div className="article-add-comment">
             <form onSubmit={handleSubmit}>

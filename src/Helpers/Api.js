@@ -32,3 +32,11 @@ export function addCommentToArticle (article_id, newComment) {
     return axios.post(`https://dk-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
     newComment)
 }
+
+export function getUsers () {
+    return axios.get("https://dk-nc-news.herokuapp.com/api/users")
+}
+
+export function deleteComment (comment_id) {
+    return axios.delete(`https://dk-nc-news.herokuapp.com/api/comments/${comment_id}`)
+}

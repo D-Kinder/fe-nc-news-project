@@ -3,7 +3,6 @@ import ArticleCard from './ArticleCard'
 import { getArticles } from '../Helpers/Api'
 import {useParams} from 'react-router-dom'
 import { FilterDropDown, SortByDropDown, OrderDropDown } from './DropDowns'
-import {Link} from 'react-router-dom'
 
 const Articles = () => {
     const {topic_slug} = useParams()

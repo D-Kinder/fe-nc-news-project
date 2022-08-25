@@ -30,7 +30,8 @@ const SingleArticle = () => {
             setSuccessfulVote(false)
         })
     }
-
+    const date = new Date(singleArticle.created_at).toGMTString()
+    
     return (
         <div className="single-article-page">
         <Link to="/articles" className="back-to-articles">
@@ -38,10 +39,11 @@ const SingleArticle = () => {
         </Link>
         <div className="single-article">
         <h3>{singleArticle.title}</h3>
-        <br></br>
         <p>Author: {singleArticle.author}</p>
         <br></br>
         <p>Topic: {singleArticle.topic}</p>
+        <br></br>
+        <p>Date Created: {date}</p>
         <br></br>
         <p>{singleArticle.body}</p>
         </div>
