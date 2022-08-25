@@ -1,6 +1,7 @@
 import {useParams, Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import { getArticleById, changeArticleVotes } from '../Helpers/Api'
+import ErrorComponent from './ErrorComponent'
 
 const SingleArticle = () => {
     const [singleArticle, setSingleArticle] = useState({})
@@ -8,14 +9,18 @@ const SingleArticle = () => {
     const [successfulVote, setSuccessfulVote] = useState(null)
     const {article_id} = useParams()
     const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         getArticleById(article_id).then((data) => {
             setSingleArticle(data.data.article)
             setIsLoading(false)
+        }).catch((err) => {
+            setError({err})
+            setIsLoading(false)
         })
     }, [article_id])
-
+    
     const changeVote = (voteChange) => {
         setSuccessfulVote(null)
         setOptimisticVotes((currentOptimisticVotes) => {
@@ -33,8 +38,11 @@ const SingleArticle = () => {
         })
     }
     const date = new Date(singleArticle.created_at).toGMTString()
-
+   
     if(isLoading) return <p>Loading...</p>
+    if(error) {
+        return <ErrorComponent message = {error.err.message} code={error.err.response.request.status} />
+    }
     return (
         <div className="single-article-page">
         <Link to="/articles" className="back-to-articles">
