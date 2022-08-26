@@ -13,6 +13,7 @@ const Articles = () => {
     const [chosenOrder, setChosenOrder] = useState("desc")
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [url, setURL] = useState(false)
 
 
 useEffect(() => {
@@ -20,6 +21,7 @@ useEffect(() => {
         if(data.data.articles.length > 0){
         setIsLoading(false)
         setAllArticles(data.data.articles)
+        setURL(data.config)
         } else {
             setError({message: "Request failed with status code 404", code: 404})
             setIsLoading(false)
@@ -32,16 +34,22 @@ const resetFilters = () => {
     setChosenSortBy("created_at")
     setChosenOrder("desc")
 }
+
+const copyURL = () => {
+    setURL(false)
+    navigator.clipboard.writeText(`https://dk-nc-news.herokuapp.com/api/articles?topic=${url.params.topic}&sort_by=${url.params.sort_by}&order=${url.params.order}`)
+    setURL(true)
+}
     if(isLoading) return <p>Loading...</p>
     if(error) {
         return <ErrorComponent message = {error.message} code={error.code} />
     }
+
     return (
         <div className="articles-page">
         <h2 className="articles-title">Articles</h2>
         <div className="topic-filter">
             <p className="text-blue">Refine your search:</p>
-            <br></br>
             <form>
             <FilterDropDown setChosenTopic={setChosenTopic}/>
             <br></br>
@@ -71,6 +79,11 @@ const resetFilters = () => {
                 )
             })}
         </section>
+        <div className="articles-share">
+            <p className="text-blue bold">Share these articles!</p>
+            <button onClick={copyURL}>Copy URL</button>
+            {url === true ? <p className="text-blue visible">Copied!</p> : ""}
+            </div>
         </div>
         
     )

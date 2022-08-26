@@ -10,6 +10,7 @@ const SingleArticle = () => {
     const {article_id} = useParams()
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [url, setURL] = useState(false)
 
     useEffect(() => {
         getArticleById(article_id).then((data) => {
@@ -39,6 +40,12 @@ const SingleArticle = () => {
         })
     }
     const date = new Date(singleArticle.created_at).toGMTString()
+
+    const copyURL = () => {
+        setURL(false)
+        navigator.clipboard.writeText(`https://dk-nc-news.herokuapp.com/api/articles/${article_id}`)
+        setURL(true)
+    }
    
     if(isLoading) return <p>Loading...</p>
     if(error) {
@@ -62,7 +69,9 @@ const SingleArticle = () => {
         <p className="text">{singleArticle.body}</p>
         </div>
         <div className="article-comments">
-            <Link className="text-blue" to={`/articles/${singleArticle.article_id}/comments`}>View Comments: {singleArticle.comment_count}</Link>
+            <Link className="text-blue" to={`/articles/${singleArticle.article_id}/comments`}>
+                <button>View Comments: {singleArticle.comment_count}</button>
+            </Link>
         </div>
         <div className={successfulVote === true ? "rated-it" : "rate-it"}>
             <button disabled={successfulVote} onClick={() => {changeVote(1)}}>Like this comment</button>
@@ -72,6 +81,11 @@ const SingleArticle = () => {
         <div className="pop-up">
             <p className={successfulVote === true ? "visible text-blue" : "hidden"}>Thanks for your vote!</p>
             <p className={successfulVote === false ? "visible text-blue" : "hidden"}>Oops, something went wrong! Please try again later</p>
+        </div>
+        <div className="article-share">
+            <p className="text-blue bold">Share this article!</p>
+            <button onClick={copyURL}>Copy URL</button>
+            {url === true ? <p className="text-blue visible">Copied!</p> : ""}
         </div>
         </div>
     )
