@@ -24,7 +24,7 @@ const Home = () => {
         </section>
         </Link>
         <Link to="/users">
-        <section id="home-articles" className="home-links">
+        <section id="home-users" className="home-links">
         <h4>USERS</h4>
         <br></br>
         <p>See the people behind the ideas</p>
