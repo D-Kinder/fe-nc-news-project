@@ -94,7 +94,7 @@ const ArticleComments = () => {
         </div>
         <div className="article-title">
         <h2 >{article.title}</h2>
-        <p>{article.author}</p>
+        <p className="text-blue" >{article.author}</p>
         </div>
         <section className="single-article-comments">
             {articleComments.map(({author, body, votes, comment_id}) => {
@@ -119,8 +119,8 @@ const ArticleComments = () => {
             </form>
         </div>
         <div className="single-article-user-response">
-            <p className={successfulPost === true ? "visible text-blue" : "hidden"}>Thanks for being a part of the conversation!</p>
-            <p className={successfulPost === false ? "visible text-blue" : "hidden"}>Oops, something went wrong! Please try again later</p>
+            <h2 className={successfulPost === true ? "visible text-blue" : "hidden"}>Thanks for being a part of the conversation!</h2>
+            <h2 className={successfulPost === false ? "visible text-blue" : "hidden"}>Oops, something went wrong! Please try again later</h2>
         </div>
     </div>
 )

@@ -20,7 +20,7 @@
 
 
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 599px){
 .heading {
   display: grid;
   grid-template-columns: 7fr 3fr;
@@ -39,6 +39,8 @@ h2 {
 h3 {
   color: gold;
 }
+
+
 
 .text {
   color: white;
@@ -133,8 +135,9 @@ a:visited {
 }
 
 #home-intro {
-  height: 100px;
-  width: 250px;
+  height: auto;
+  margin-left:10px;
+  margin-right:10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -154,8 +157,9 @@ a:visited {
 }
 
 #home-topics {
-  height: 100px;
-  width: 350px;
+  height: auto;
+  margin-left:10px;
+  margin-right:10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -174,8 +178,25 @@ a:visited {
 }
 
 #home-articles {
-  height: 100px;
-  width: 350px;
+  height: auto;
+  margin-left:10px;
+  margin-right:10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
+}
+
+#home-users {
+  height: auto;
+  margin-left:10px;
+  margin-right:10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -247,7 +268,7 @@ a:visited {
 .single-article-page {
   display:grid;
     grid-template-rows: 0.75fr 4fr 0.5fr 0.5fr 0.5fr;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 0.5fr 4fr 0.5fr;
     grid-template-areas:
     ". back-to-articles ."
     ". single-article ."
@@ -421,7 +442,7 @@ textarea {
 .topics-page {
   display:grid;
   grid-template-rows: 1fr 8fr;
-  grid-template-columns: 1.5fr 3fr 1.5fr;
+  grid-template-columns: 0.5fr 3fr 0.5fr;
   grid-template-areas: 
   ". topics-title ."
   ". topics-list .";
@@ -443,6 +464,7 @@ textarea {
 .topics-list {
   grid-area: topics-list;
   overflow: scroll;
+  
 }
 
 button:hover {
@@ -549,15 +571,14 @@ h4 {
 .users-list {
   grid-area: users-list;
   overflow:scroll;
+  
 }
 
 .single-user {
-  margin: 10px;
+  margin: 20px;
   border: 1px solid orange;
   padding: 10px;
   background-color: midnightblue;
-  margin-left: 40px;
-  margin-right: 40px;
   border-radius: 25px 25px 0px 25px;
   border: 1px solid orange;
 }
@@ -646,10 +667,40 @@ h4 {
 
 
 @media screen and (min-width: 600px){
-  .top {
-    background-color: green;
+
+  h4 {
+    color: white;
   }
 
+  h2 {
+    color:midnightblue;
+  }
+  
+  h3 {
+    color: gold;
+  }
+  
+  button {
+    background-color: midnightblue;
+    color: white;
+    padding: 7px;
+    border-radius: 25px 25px 0px 25px;
+    border: 2px solid orange;
+  }
+
+  button:hover {
+    background-color: orange;
+    border: 2px solid midnightblue;
+    transition: background-color 0.25s;
+  }
+  
+  .text {
+    color: white;
+  }
+  
+  .text-blue {
+    color: midnightblue;
+  }
   .heading {
     display: grid;
     grid-template-columns: 7fr 3fr;
@@ -665,7 +716,6 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
   }
   
   .user {
@@ -674,6 +724,12 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-left: 2px double rgb(228, 224, 224);
+  }
+
+  .user:hover {
+    background-color: rgb(252, 252, 205);
+    transition: background-color 1s;
   }
   
   a {
@@ -686,21 +742,24 @@ h4 {
   }
   
   .quicklinks {
-    border: 1px solid blue;
+    border: 2px solid orange;
     height: 30px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    background-color: rgb(228, 224, 224);
   }
   
   .home {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border: 1px solid green;
     overflow: scroll;
     height: 100%;
+    background-color: rgb(252, 252, 205);
+    animation-name: slide;
+    animation-duration: 0.75s;
   }
   
   .home-links {
@@ -720,44 +779,86 @@ h4 {
   }
   
   #home-intro {
-    margin-top: 80px;
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #home-endpoints {
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: auto;
+  margin-left:80px;
+  margin-right:80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  transition: background-color 0.4s linear;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
   }
   
   #home-topics {
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: auto;
+  margin-left:80px;
+  margin-right:80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  transition: background-color 0.4s linear;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
+  }
+
+  #home-topics:hover {
+    background-color: orange;
+    border: 2px solid midnightblue;
   }
   
   #home-articles {
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: auto;
+  margin-left:80px;
+  margin-right:80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  transition: background-color 0.4s linear;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
+  }
+
+  #home-articles:hover {
+    background-color: orange;
+    border: 2px solid midnightblue;
   }
   
-  #home-comments {
-    height: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  #home-users {
+    height: auto;
+  margin-left:80px;
+  margin-right:80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: midnightblue;
+  margin-top: 0;
+  transition: background-color 0.4s linear;
+  color: white;
+  border-radius: 25px 25px 0px 25px;
+  font-size: 1.25rem;
+  border: 2px solid orange;
+  }
+
+  #home-users:hover {
+    background-color: orange;
+    border: 2px solid midnightblue;
   }
 
   .articles-page {
@@ -769,14 +870,52 @@ h4 {
     "topic-filter articles"
     "add-article articles";
     height: 100%;
+    background-color: rgb(252, 252, 205);
+  animation-name: slide;
+  animation-duration: 0.75s;
+  }
+
+  .article-card {
+    background-color: midnightblue;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 25px 25px 0px 25px;
+    border: 1px solid orange;
+  }
+
+  .article-card:hover{
+    background-color: orange;
+    border:2px solid midnightblue;
+    color:midnightblue;
+    transition: background-color 0.5s;
+  }
+
+  /* .single-article {
+    background-color: midnightblue;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 25px 25px 0px 25px;
+    border: 1px solid orange;
+  } */
+
+  .single-article:hover {
+    background-color: orange;
+    border:2px solid midnightblue;
+    color:midnightblue;
+    transition: background-color 0.5s;
   }
   .articles {
     grid-area: articles;
-    border: 2px solid red;
     overflow: scroll;
     height: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
+    background-color: rgb(245, 245, 191);
+    border-radius: 25px 25px 0px 25px;
   }
 
   .topic-filter {
@@ -798,7 +937,9 @@ h4 {
     justify-content: center;
     align-items: center;
     text-decoration: underline;
-    border: 1px solid green;
+    color: midnightblue;
+    text-decoration-thickness: px;
+  text-underline-offset: 5px;
   }
 
   .single-article-page {
@@ -812,6 +953,9 @@ h4 {
     ". pop-up ."
     ". article-comments .";
     height: 100%;
+    background-color: rgb(252, 252, 205);
+    animation-name: slide;
+    animation-duration: 0.75s;
   }
 
   .single-article {
@@ -819,9 +963,12 @@ h4 {
     display: flex;
     flex-direction: column;
     padding: 5px;
-    border: 1px solid brown;
     padding-top: 25px;
     overflow: scroll;
+    background-color: midnightblue;
+    padding: 20px;
+    border-radius: 25px 25px 0px 25px;
+    border: 1px solid orange;
   }
 
   .article-comments {
@@ -842,8 +989,22 @@ h4 {
 
   .rate-it button {
       height: 50%;
-      background-color: red;
       padding: 5px;
+  }
+
+  
+
+  .rated-it {
+    grid-area: rate-it;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .rated-it button {
+    height: 50%;
+    padding: 5px;
   }
 
   .pop-up{
@@ -908,6 +1069,9 @@ h4 {
     ". single-article-comments . ."
     ". . . .";
     height: 100%;
+    background-color: rgb(252, 252, 205);
+    animation-name: slide;
+    animation-duration: 0.75s;
   }
 
   .back-to-article{
@@ -920,7 +1084,6 @@ h4 {
 
   .single-article-user-response{
     grid-area: single-article-user-response;
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -937,20 +1100,23 @@ h4 {
   
   .single-article-comments {
     grid-area: single-article-comments;
-    border: 1px solid blue;
     overflow: scroll;
     padding: 2px;
+    background-color: rgb(245, 245, 191);
+    border-radius: 25px 25px 0px 25px;
   }
 
   .article-comment {
     padding: 10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid orange;;
+    background-color: midnightblue;
+    margin: 10px;
+    border-radius: 25px 25px 0px 25px;
+    border: 2px solid orange;
   }
   
   .article-add-comment {
     grid-area: article-add-comment;
-    border: 1px solid green;
     display: flex;
   flex-direction: column;
   justify-content: center;
@@ -970,7 +1136,10 @@ h4 {
     ". topics-title ."
     ". topics-list ."
     ". . .";
-    height: 100%
+    height: 100%;
+    background-color: rgb(252, 252, 205);
+    animation-name: slide;
+    animation-duration: 0.75s;
   }
 
   .topics-title {
@@ -979,6 +1148,10 @@ h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-decoration: underline;
+    color: midnightblue;
+    text-decoration-thickness: px;
+    text-underline-offset: 5px;
   }
 
   ul{
@@ -999,7 +1172,17 @@ h4 {
 
   .single-topic {
     padding: 50px;
-    border: 1px solid red;
+    background-color: midnightblue;
+    margin: 10px;
+    border-radius: 25px 25px 0px 25px;
+    border: 2px solid orange;
+  }
+
+  .single-topic:hover {
+    background-color: orange;
+    color: midnightblue;
+    border: 2px solid midnightblue;
+    transition: background-color 0.75s;
   }
 
   .topic-articles-page {
@@ -1055,26 +1238,39 @@ h4 {
     "current-user"
     "users-list";
     height: 100%;
+    background-color: rgb(252, 252, 205);
+    animation-name: slide;
+    animation-duration: 0.75s;
   }
   
   .current-user {
     grid-area: current-user;
-    border: 1px solid blue;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  background-color: midnightblue;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
   }
   
-  .user-list {
+  .users-list {
     grid-area: users-list;
+    overflow: scroll;
   }
 
   .single-user {
-    margin: 10px;
-    border: 1px solid orange;
-    padding: 10px;
+    margin: 40px;
+  border: 1px solid orange;
+  padding: 10px;
+  background-color: midnightblue;
+  border-radius: 25px 25px 0px 25px;
+  border: 1px solid orange;
   }
   
   .user-avatar {

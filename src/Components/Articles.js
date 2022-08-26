@@ -40,22 +40,24 @@ const resetFilters = () => {
         <div className="articles-page">
         <h2 className="articles-title">Articles</h2>
         <div className="topic-filter">
-            <p className="text">Refine your search:</p>
+            <p className="text-blue">Refine your search:</p>
+            <br></br>
             <form>
             <FilterDropDown setChosenTopic={setChosenTopic}/>
+            <br></br>
+            <br></br>
             <SortByDropDown setChosenSortBy={setChosenSortBy}/>
+            <br></br>
+            <br></br>
             <OrderDropDown setChosenOrder={setChosenOrder}/>
+            <br></br>
             <br></br>
             <button type="reset" onClick={resetFilters}>Reset Filters</button>
             </form>
         </div>
-        <div className="add-article">
-            <p>Add Article goes here</p>
-        </div>
         <section className="articles">
             {allArticles.map(({article_id, author, body, comment_count, title, topic, votes}) => {
                 return (
-                    <div className="article-card">
                     <ArticleCard
                         key={article_id}
                         author={author}
@@ -66,7 +68,6 @@ const resetFilters = () => {
                         votes={votes}
                         article_id={article_id}
                         />
-                        </div>
                 )
             })}
         </section>
